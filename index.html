@@ -16,16 +16,14 @@
 
       function getHumanChoice() {
         while (true) {
-          let input = prompt(
-            "Choose Rock, Paper or Scissor",
-            previousChoice
-          );
+          let input = prompt("Choose Rock, Paper, Scissor or quit", previousChoice);
           let userInput = input.toLowerCase();
-          console.log(`Human Input: ${userInput}`);
+          previousChoice = userInput;
           if (
             userInput === "rock" ||
             userInput === "paper" ||
-            userInput === "scissor"
+            userInput === "scissor" ||
+            userInput === "quit"
           ) {
             return userInput;
           } else console.log("invalid choice Choose again.");
@@ -37,37 +35,60 @@
         let computerScore = 0;
 
         function playRound(humanChoice, computerChoice) {
-            if(humanChoice === computerChoice){
-                console.log(`Computer Selected: ${computerChoice}\n Human Selected: ${humanChoice}`)
-                console.log("It's a draw");
-            }
-          else if (
+          if (humanChoice === "quit") {
+            return true;
+          }
+          if (humanChoice === computerChoice) {
+            console.log(
+              `Computer Selected: ${computerChoice}\n Human Selected: ${humanChoice}`
+            );
+            console.log("It's a draw");
+          } else if (
             (humanChoice === "rock" && computerChoice === "scissor") ||
             (humanChoice === "paper" && computerChoice === "rock") ||
             (humanChoice === "scissor" && computerChoice === "paper")
           ) {
             humanScore++;
-            console.log(`Computer Selected: ${computerChoice}\n Human Selected: ${humanChoice}`)
-            console.log(`Human Score increased \n HumanScore:  ${humanScore}  -  ComputerScore: ${computerScore}`)
-          } else {
+            console.log(
+              `Computer Selected: ${computerChoice}\n Human Selected: ${humanChoice}`
+            );
             
+          } else {
             computerScore++;
-            console.log(`Computer Selected: ${computerChoice}\n Human Selected: ${humanChoice}`)
-            console.log(`Computer Score increased \n HumanScore:  ${humanScore}  -  ComputerScore: ${computerScore}`)
+            console.log(
+              `Computer Selected: ${computerChoice}\n Human Selected: ${humanChoice}`
+            );
+           
           }
+          return false;
         }
 
         while (computerScore < 5 && humanScore < 5) {
           const humanSelection = getHumanChoice();
           const computerSelection = getComputerChoice();
-          playRound(humanSelection, computerSelection);
+          let quit = playRound(humanSelection, computerSelection);
+          if(quit===true){
+            console.log("You quit the game.")
+            break;
+          }
+          console.log(
+              `HumanScore:  ${humanScore}  -  ComputerScore: ${computerScore}`
+            );
         }
-
-        (humanScore===5)? console.log("human won."):console.log("Computer Won.");
+        if(humanScore===5){
+          console.log("Human won.");
+        }
+        else if(computerScore===5){
+          console.log("Computer Won.");
+        }
+        else{
+          console.log("Final Score: ");
+          console.log(`Human Score: ${humanScore} `);
+          console.log(`Computer Score: ${computerScore}`);
+        }
       }
 
       playGame();
-
     </script>
   </body>
 </html>
