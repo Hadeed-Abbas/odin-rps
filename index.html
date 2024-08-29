@@ -4,15 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #game {
+        background-color: red;
+        border: 2px solid;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+    </style>
   </head>
   <body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissor</button>
+    <div id="game">
+      <div id="buttons">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissor</button>
+      </div>
 
-    <div id="selection"></div>
-    <div id="result"></div>
-    <div id="score"></div>
+      <div id="text">
+        <div id="selection"></div>
+        <div id="result"></div>
+        <div id="score"></div>
+      </div>
+    </div>
 
     <script>
       let rock = document.querySelector("#rock");
@@ -40,7 +71,7 @@
           displayScore();
         }
       });
-      
+
       paper.addEventListener("click", () => {
         if (humanScore < 5 && computerScore < 5) {
           humanChoice = "paper";
@@ -80,7 +111,7 @@
 
       function displayScore() {
         score.innerText = `Your Score: ${humanScore} Computer Score: ${computerScore}`;
-        
+
         if (humanScore === 5) {
           result.innerText = "You Won! Game Over.";
           disableButtons();
