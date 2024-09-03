@@ -1,0 +1,46 @@
+/* CSS for Rock Paper Scissor index page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Verdana", Geneva, Tahoma, sans-serif;
+  }
+  body {
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  #game {
+    background-color: red;
+    border: 2px solid rgb(255, 58, 58);
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px rgb(180, 16, 16);
+  }
+  #buttons {
+    display: flex;
+    gap: 10px;
+    height: 50px;
+    margin: 5px;
+  }
+  #buttons > button {
+    flex: 1;
+  }
+  #text {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+
+    color: aliceblue;
+  }
+  #text > div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

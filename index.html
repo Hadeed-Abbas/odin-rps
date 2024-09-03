@@ -4,31 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        background-color: aqua;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      #game {
-        background-color: red;
-        border: 2px solid;
-        width: 300px;
-        height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div id="game">
@@ -44,88 +21,5 @@
         <div id="score"></div>
       </div>
     </div>
-
-    <script>
-      let rock = document.querySelector("#rock");
-      let paper = document.querySelector("#paper");
-      let scissor = document.querySelector("#scissors");
-      let selection = document.querySelector("#selection");
-      let result = document.querySelector("#result");
-      let score = document.querySelector("#score");
-
-      let humanChoice = "";
-      let humanScore = 0;
-      let computerScore = 0;
-
-      const values = ["rock", "paper", "scissor"];
-      function getComputerChoice() {
-        let num = Math.floor(Math.random() * 3);
-        return values[num];
-      }
-
-      rock.addEventListener("click", () => {
-        if (humanScore < 5 && computerScore < 5) {
-          humanChoice = "rock";
-          const computerChoice = getComputerChoice();
-          playRound(humanChoice, computerChoice);
-          displayScore();
-        }
-      });
-
-      paper.addEventListener("click", () => {
-        if (humanScore < 5 && computerScore < 5) {
-          humanChoice = "paper";
-          const computerChoice = getComputerChoice();
-          playRound(humanChoice, computerChoice);
-          displayScore();
-        }
-      });
-
-      scissor.addEventListener("click", () => {
-        if (humanScore < 5 && computerScore < 5) {
-          humanChoice = "scissor";
-          const computerChoice = getComputerChoice();
-          playRound(humanChoice, computerChoice);
-          displayScore();
-        }
-      });
-
-      function playRound(humanChoice, computerChoice) {
-        if (humanChoice === computerChoice) {
-          selection.innerText = `Computer Selected: ${computerChoice} You Selected: ${humanChoice}`;
-          result.innerText = "It is a draw";
-        } else if (
-          (humanChoice === "rock" && computerChoice === "scissor") ||
-          (humanChoice === "paper" && computerChoice === "rock") ||
-          (humanChoice === "scissor" && computerChoice === "paper")
-        ) {
-          humanScore++;
-          selection.innerText = `Computer Selected: ${computerChoice} You Selected: ${humanChoice}`;
-          result.innerText = "Human beat Computer!";
-        } else {
-          computerScore++;
-          selection.innerText = `Computer Selected: ${computerChoice} You Selected: ${humanChoice}`;
-          result.innerText = "Computer beat you!";
-        }
-      }
-
-      function displayScore() {
-        score.innerText = `Your Score: ${humanScore} Computer Score: ${computerScore}`;
-
-        if (humanScore === 5) {
-          result.innerText = "You Won! Game Over.";
-          disableButtons();
-        } else if (computerScore === 5) {
-          result.innerText = "Computer Won! Game Over.";
-          disableButtons();
-        }
-      }
-
-      function disableButtons() {
-        rock.disabled = true;
-        paper.disabled = true;
-        scissor.disabled = true;
-      }
-    </script>
   </body>
 </html>
